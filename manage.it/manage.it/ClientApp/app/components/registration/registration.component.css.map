@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AACI,qBAAK;EACD,KAAK,EAAE,GAAG",
+"sources": ["registration.component.scss"],
+"names": [],
+"file": "registration.component.css"
+}

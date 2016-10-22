@@ -27,6 +27,17 @@
                         <span class='glyphicon glyphicon-th-list'></span> Fetch data
                     </a>
                 </li>
+                <hr />
+                <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/logowanie']">
+                        <span class='glyphicon glyphicon-user'></span> Logowanie
+                    </a>
+                </li>
+                <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/registration']">
+                        <span class='glyphicon glyphicon-envelope'></span> Rejestracja
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
