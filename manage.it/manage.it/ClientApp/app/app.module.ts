@@ -7,6 +7,7 @@ import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import {RegistrationComponent} from "./components/registration/registration.component";
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     bootstrap: [ AppComponent ],
@@ -27,7 +28,8 @@ import {RegistrationComponent} from "./components/registration/registration.comp
             { path: 'fetch-data', component: FetchDataComponent },
             { path: 'registration', component: RegistrationComponent },
             { path: '**', redirectTo: 'home' }
-        ])
+        ]),
+        ReactiveFormsModule
     ]
 })
 export class AppModule {
