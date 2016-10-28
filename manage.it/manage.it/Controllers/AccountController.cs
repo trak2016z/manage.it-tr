@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace manage.it.Controllers
 {
     [Route("api/[controller]")]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         // GET: api/values
         [HttpGet]

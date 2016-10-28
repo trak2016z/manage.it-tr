@@ -2,17 +2,25 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using manage.it.Business.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace manage.it.Controllers
 {
     [Route("api/[controller]")]
-    public class SampleDataController : Controller
+    public class SampleDataController : BaseController
     {
+        private readonly BoardService _boardService;
+
         private static string[] Summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
+
+        public SampleDataController()
+        {
+            _boardService = new BoardService();
+        }
 
         [HttpGet("[action]")]
         public IEnumerable<WeatherForecast> WeatherForecasts()
