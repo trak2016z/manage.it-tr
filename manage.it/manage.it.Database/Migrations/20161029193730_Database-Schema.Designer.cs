@@ -8,9 +8,10 @@ using manage.it.Database;
 namespace manage.it.Database.Migrations
 {
     [DbContext(typeof(ManageItContext))]
-    partial class ManageItContextModelSnapshot : ModelSnapshot
+    [Migration("20161029193730_Database-Schema")]
+    partial class DatabaseSchema
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")

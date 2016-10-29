@@ -17,6 +17,8 @@ namespace manage.it.Database
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<UserBoard>().HasKey(x => new { x.UserId, x.BoardId });
+
             base.OnModelCreating(builder);
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
@@ -31,5 +33,8 @@ namespace manage.it.Database
         }
 
         public DbSet<Board> Boards { get; set; }
+        public DbSet<Column> Columns { get; set; }
+        public DbSet<Task> Tasks { get; set; }
+        public DbSet<UserBoard> UserBoards { get; set; }
     }
 }
