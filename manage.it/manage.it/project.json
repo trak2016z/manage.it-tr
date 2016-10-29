@@ -22,7 +22,9 @@
     "Microsoft.Extensions.Logging.Debug": "1.0.0",
     "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
     "manage.it.Business": "1.0.0-*",
-    "manage.it.Data": "1.0.0-*"
+    "manage.it.Data": "1.0.0-*",
+    "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0",
+    "manage.it.Database": "1.0.0-*"
   },
 
   "tools": {
