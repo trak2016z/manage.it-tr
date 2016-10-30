@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using manage.it.Business.Services;
 using manage.it.Data.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 

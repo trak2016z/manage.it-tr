@@ -6,6 +6,7 @@ using manage.it.Data.Models;
 using manage.it.Database;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
@@ -39,7 +40,11 @@ namespace manage.it
             services.AddDbContext<ManageItContext>(options =>
                 options.UseSqlServer(connection));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+                {
+                    //if user is not authenticated return 401 unauthorized instead of redirect to login page - G.Niemiec
+                    options.Cookies.ApplicationCookie.AutomaticChallenge = false;
+                })
                 .AddEntityFrameworkStores<ManageItContext>()
                 .AddDefaultTokenProviders();
 
@@ -87,6 +92,8 @@ namespace manage.it
             }
 
             app.UseStaticFiles();
+
+            app.UseIdentity();
 
             app.UseMvc(routes =>
             {
