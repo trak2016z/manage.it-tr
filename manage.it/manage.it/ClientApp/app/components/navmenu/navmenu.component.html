@@ -28,14 +28,24 @@
                     </a>
                 </li>
                 <hr />
-                <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/logowanie']">
-                        <span class='glyphicon glyphicon-user'></span> Logowanie
+                <li [routerLinkActive]="['link-active']" [hidden]="accountService.userViewModel.isSignedIn === true">
+                    <a [routerLink]="['/login']">
+                        <span class='glyphicon glyphicon-log-in'></span> Logowanie
                     </a>
                 </li>
-                <li [routerLinkActive]="['link-active']">
+                <li [routerLinkActive]="['link-active']" [hidden]="accountService.userViewModel.isSignedIn === true">
                     <a [routerLink]="['/registration']">
                         <span class='glyphicon glyphicon-envelope'></span> Rejestracja
+                    </a>
+                </li>
+                <li [style.display]="accountService.userViewModel.isSignedIn === true ? 'block' : 'none'">
+                    <a>
+                        Witaj {{accountService.userViewModel.userName}}
+                    </a>
+                </li>
+                <li [style.display]="accountService.userViewModel.isSignedIn === true ? 'block' : 'none'">
+                    <a (click)="logOff()">
+                        <span class='glyphicon glyphicon-log-out'></span> Wyloguj
                     </a>
                 </li>
             </ul>

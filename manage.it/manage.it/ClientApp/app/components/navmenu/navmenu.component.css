@@ -57,3 +57,7 @@ li.link-active a:focus {
         text-overflow: ellipsis;
     }
 }
+
+[hidden] {
+    display: none;
+}

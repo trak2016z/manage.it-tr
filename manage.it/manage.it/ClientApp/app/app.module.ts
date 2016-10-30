@@ -8,6 +8,10 @@ import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import {RegistrationComponent} from "./components/registration/registration.component";
 import { ReactiveFormsModule } from '@angular/forms';
+import {LoginComponent} from "./components/login/login.component";
+import {AccountService} from "./services/account.service";
+import {HttpClient} from "./services/httpClient.service";
+import {UtilityService} from "./services/utility.service";
 
 @NgModule({
     bootstrap: [ AppComponent ],
@@ -17,7 +21,8 @@ import { ReactiveFormsModule } from '@angular/forms';
         CounterComponent,
         FetchDataComponent,
         HomeComponent,
-        RegistrationComponent
+        RegistrationComponent,
+        LoginComponent
     ],
     imports: [
         UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
@@ -27,10 +32,16 @@ import { ReactiveFormsModule } from '@angular/forms';
             { path: 'counter', component: CounterComponent },
             { path: 'fetch-data', component: FetchDataComponent },
             { path: 'registration', component: RegistrationComponent },
+            { path: 'login', component: LoginComponent },
             { path: '**', redirectTo: 'home' }
         ]),
         ReactiveFormsModule
-    ]
+    ],
+    providers: [HttpClient, AccountService, UtilityService]
 })
 export class AppModule {
+
+    constructor(private accountService: AccountService){
+        accountService.isUserSignedIn();
+    }
 }

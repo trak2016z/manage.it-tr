@@ -4,13 +4,13 @@ import {AccountService} from "../../services/account.service";
 import {UtilityService} from "../../services/utility.service";
 
 @Component({
-    selector: 'registration',
-    template: require('./registration.component.html'),
-    styles: [require('./registration.component.css')],
+    selector: 'login',
+    template: require('./login.component.html'),
+    styles: [require('./login.component.css')],
     providers: [UtilityService]
 })
-export class RegistrationComponent {
-    private registrationForm: FormGroup;
+export class LoginComponent {
+    private loginForm: FormGroup;
     private accountService: AccountService;
     private utilityService: UtilityService;
 
@@ -18,21 +18,22 @@ export class RegistrationComponent {
         this.accountService = accountService;
         this.utilityService = utilityService;
 
-        this.registrationForm = formBuilder.group({
+        this.loginForm = formBuilder.group({
             email: ['', Validators.required],
             password: ['', Validators.required]
         });
     }
 
     public onSubmit(): void {
-         if(!this.registrationForm.valid){
-             return;
-         }
+        if(!this.loginForm.valid){
+            return;
+        }
 
-         this.accountService.createNewAccount(this.registrationForm.value.email, this.registrationForm.value.password).subscribe(result => {
-             alert('Konto zostało pomyślnie utworzone. Możesz się teraz zalogować.')
-         }, error => {
-             this.utilityService.handleApiError(error);
-         });
+        this.accountService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(result => {
+            this.accountService.getAndUpdateAntiForgeryToken();
+            this.accountService.isUserSignedIn();
+        }, error => {
+            this.utilityService.handleApiError(error);
+        });
     }
 }

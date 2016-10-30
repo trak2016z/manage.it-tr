@@ -5,12 +5,15 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using manage.it.Controllers;
 using manage.it.Data.Models;
+using manage.it.ViewModels;
+using Microsoft.AspNetCore.Antiforgery;
+using Microsoft.AspNetCore.Antiforgery.Internal;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.Extensions.Logging;
-using WebApplication1.Models.AccountViewModels;
 
 namespace manage.it.Controllers
 {
@@ -25,7 +28,7 @@ namespace manage.it.Controllers
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            ILoggerFactory loggerFactory)
+            ILoggerFactory loggerFactory, IAntiforgery antiforgery)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -75,11 +78,13 @@ namespace manage.it.Controllers
                     //var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
                     //await _emailSender.SendEmailAsync(model.Email, "Confirm your account",
                     //    $"Please confirm your account by clicking this link: <a href='{callbackUrl}'>link</a>");
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    
+                    //await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation(3, "User created a new account with password.");
                     return Ok();
                 }
                 AddErrors(result);
+                return BadRequest(result);
             }
 
             // If we got this far, something failed, redisplay form
@@ -93,6 +98,28 @@ namespace manage.it.Controllers
             await _signInManager.SignOutAsync();
             _logger.LogInformation(4, "User logged out.");
             return Ok();
+        }
+
+        [AllowAnonymous]
+        [HttpGet("[action]")]
+        public IActionResult AntiForgeryToken()
+        {
+            return PartialView("AntiForgeryToken");
+        }
+
+        [HttpGet("[action]")]
+        [AllowAnonymous]
+        public IActionResult IsUserSignedIn()
+        {
+            var result = new UserViewModel();
+
+            if (_signInManager.IsSignedIn(User))
+            {
+                result.IsSignedIn = true;
+                result.Name = User.Identity.Name;
+            }
+
+            return Ok(result);
         }
 
         #region Helpers
