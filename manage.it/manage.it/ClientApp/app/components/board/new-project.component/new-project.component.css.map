@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AACI,oBAAK;EACD,KAAK,EAAE,GAAG",
+"sources": ["new-project.component.scss"],
+"names": [],
+"file": "new-project.component.css"
+}

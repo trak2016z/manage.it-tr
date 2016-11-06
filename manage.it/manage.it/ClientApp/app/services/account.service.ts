@@ -13,6 +13,10 @@ export class AccountService {
         this.userViewModel = new UserViewModel();
     }
 
+    checkIfUserIsAuthenticated() {
+
+    }
+
     updateAntiForgeryTokenAfterLoginOrLogout(response: Response){
         var inputElement = document.createElement('div');
         inputElement.innerHTML = response['_body'];

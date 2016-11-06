@@ -1,0 +1,18 @@
+.mi-board {
+    a {
+        text-decoration: none;
+    }
+
+    &-projects {
+        margin-top: 20px;
+
+        &-project {
+            .thumbnail:hover{
+                background-color: #4189C7;
+                .caption {
+                    color: white;
+                }
+            }
+        }
+    }
+}
