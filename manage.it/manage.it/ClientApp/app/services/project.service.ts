@@ -12,7 +12,7 @@ export class ProjectService {
     }
 
     createNewProject(name: string, description: string): Observable<Response> {
-        return this.httpClient.post('/api/Project/CreateNewProject', {
+        return this.httpClient.post('/api/Board/CreateNewBoard', {
             name: name,
             description: description
         });
