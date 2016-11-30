@@ -28,5 +28,12 @@ namespace manage.it.Controllers
             _boardService.CreateNewBoard(board, User.Identity.Name);
             return Ok();
         }
+
+        [HttpGet("[action]")]
+        public IActionResult GetProjectsForUser()
+        {
+            var projects = _boardService.GetProjectForUser(User.Identity.Name);
+            return Ok(projects);
+        }
     }
 }

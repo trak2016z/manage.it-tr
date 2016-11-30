@@ -3,97 +3,13 @@
     <hr />
     <button class="btn btn-success" [routerLink]="['/board/new-project']">Utwórz nowy projekt</button>
     <div class="mi-board-projects">
-        <div class="row">
-            <div class="col-xs-3 mi-board-projects-project">
+        <div *ngFor="let boardsRow of boards | rows:4; let i=index" class="row">
+            <div *ngFor="let board of boardsRow" class="col-xs-3 mi-board-projects-project">
                 <a href="#">
                     <div class="thumbnail">
                         <div class="caption">
-                            <h3>Nazwa projektu</h3>
-                            <p>Opis projektu</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-xs-3 mi-board-projects-project">
-                <a href="#">
-                    <div class="thumbnail">
-                        <div class="caption">
-                            <h3>Nazwa projektu</h3>
-                            <p>Opis projektu</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-xs-3 mi-board-projects-project">
-                <a href="#">
-                    <div class="thumbnail">
-                        <div class="caption">
-                            <h3>Nazwa projektu</h3>
-                            <p>Opis projektu</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-3 mi-board-projects-project">
-                <a href="#">
-                    <div class="thumbnail">
-                        <div class="caption">
-                            <h3>Nazwa projektu</h3>
-                            <p>Opis projektu</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-xs-3 mi-board-projects-project">
-                <a href="#">
-                    <div class="thumbnail">
-                        <div class="caption">
-                            <h3>Nazwa projektu</h3>
-                            <p>Opis projektu</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-xs-3 mi-board-projects-project">
-                <a href="#">
-                    <div class="thumbnail">
-                        <div class="caption">
-                            <h3>Nazwa projektu</h3>
-                            <p>Opis projektu</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-3 mi-board-projects-project">
-                <a href="#">
-                    <div class="thumbnail">
-                        <div class="caption">
-                            <h3>Nazwa projektu</h3>
-                            <p>Opis projektu</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-xs-3 mi-board-projects-project">
-                <a href="#">
-                    <div class="thumbnail">
-                        <div class="caption">
-                            <h3>Nazwa projektu</h3>
-                            <p>Opis projektu</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-xs-3 mi-board-projects-project">
-                <a href="#">
-                    <div class="thumbnail">
-                        <div class="caption">
-                            <h3>Nazwa projektu</h3>
-                            <p>Opis projektu</p>
+                            <h3>{{board.name}}</h3>
+                            <p>{{board.description}}</p>
                         </div>
                     </div>
                 </a>

@@ -54,5 +54,14 @@ namespace manage.it.Business.Services
             Context.Columns.AddRange(columnsList);
             Context.SaveChanges();
         }
+
+        public IEnumerable<Board> GetProjectForUser(string identityName)
+        {
+            var userId = Context.Users.SingleOrDefault(x => x.UserName == identityName).Id;
+            var userBoardsIds = Context.UserBoards.Where(x => x.UserId == userId).Select(x => x.BoardId).ToList();
+            var userBoards = Context.Boards.Where(x => userBoardsIds.Contains(x.Id)).ToList();
+
+            return userBoards;
+        }
     }
 }

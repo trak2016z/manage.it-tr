@@ -17,4 +17,16 @@ export class ProjectService {
             description: description
         });
     }
+
+    getProjectsForUser(): Observable<Response> {
+        return this.httpClient.get('/api/Board/GetProjectsForUser');
+    }
+}
+
+export class Board {
+    id: number;
+    name: string;
+    description: string;
+    columns: any;
+    userBoards: any;
 }

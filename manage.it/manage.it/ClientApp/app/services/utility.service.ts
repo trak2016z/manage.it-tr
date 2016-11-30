@@ -7,6 +7,6 @@ export class UtilityService {
     }
 
     handleApiError(error: any): void {
-        alert(error._body);
+        console.log(error._body);
     }
 }
