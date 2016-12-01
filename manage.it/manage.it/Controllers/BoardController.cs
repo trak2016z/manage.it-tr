@@ -35,5 +35,20 @@ namespace manage.it.Controllers
             var projects = _boardService.GetProjectForUser(User.Identity.Name);
             return Ok(projects);
         }
+
+        [HttpGet("[action]/{projectId}")]
+        public IActionResult GetProject(int projectId)
+        {
+            var hasUserAccessToProject = _boardService.HasUserAccessToProject(User.Identity.Name, projectId);
+
+            if (!hasUserAccessToProject)
+            {
+                return Unauthorized();
+            }
+
+            var project = _boardService.GetProject(projectId);
+
+            return Ok(project);
+        }
     }
 }

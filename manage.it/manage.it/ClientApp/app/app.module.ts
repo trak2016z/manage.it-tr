@@ -16,6 +16,7 @@ import {UtilityService} from "./services/utility.service";
 import {NewProjectComponent} from "./components/board/new-project.component/new-project.component";
 import {ProjectService} from "./services/project.service";
 import {RowsPipe} from './pipes/rowspipe';
+import {ProjectComponent} from "./components/board/project.component/project.component";
 
 @NgModule({
     bootstrap: [ AppComponent ],
@@ -29,6 +30,7 @@ import {RowsPipe} from './pipes/rowspipe';
         LoginComponent,
         BoardComponent,
         NewProjectComponent,
+        ProjectComponent,
         RowsPipe
     ],
     imports: [
@@ -42,6 +44,7 @@ import {RowsPipe} from './pipes/rowspipe';
             { path: 'login', component: LoginComponent },
             { path: 'board', component: BoardComponent },
             { path: 'board/new-project', component: NewProjectComponent },
+            { path: 'board/project/:id', component: ProjectComponent },
             { path: '**', redirectTo: 'home' }
         ]),
         ReactiveFormsModule

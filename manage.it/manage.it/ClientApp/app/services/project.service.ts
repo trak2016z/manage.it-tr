@@ -21,12 +21,36 @@ export class ProjectService {
     getProjectsForUser(): Observable<Response> {
         return this.httpClient.get('/api/Board/GetProjectsForUser');
     }
+
+    getProject(projectId: number): Observable<Response> {
+        return this.httpClient.get('/api/Board/GetProject/' + projectId)
+    }
 }
 
 export class Board {
     id: number;
     name: string;
     description: string;
-    columns: any;
+    columns: Array<Column>;
     userBoards: any;
+}
+
+export class Column {
+    id: number;
+    name: string;
+    sequence: number;
+    tasks: Array<Task>;
+    boardId: number;
+    board: Board;
+}
+
+export class Task {
+    id: number;
+    name: string;
+    description: string;
+    sequence: number;
+    userId: string;
+    user: any;
+    columnId: number;
+    column: Column;
 }
