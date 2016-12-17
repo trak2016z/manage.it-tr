@@ -4,5 +4,13 @@
     border-right: 1px solid lightgray; }
     .mi-project-column:last-child {
       border: none; }
+    .mi-project-column-task {
+      border: 1px solid lightgray;
+      padding: 10px;
+      margin-bottom: 10px; }
+      .mi-project-column-task:hover {
+        background-color: #4189C7;
+        color: white;
+        cursor: pointer; }
 
 /*# sourceMappingURL=project.component.css.map */

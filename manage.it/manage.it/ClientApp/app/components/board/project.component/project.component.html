@@ -3,6 +3,11 @@
     <hr />
     <div class="mi-project-column col-xs-4" *ngFor="let column of board?.columns">
         <h3>{{column.name}}</h3>
+        <hr />
+        <div class="mi-project-column-task" *ngFor="let task of column?.tasks">
+            <h4>{{task.name}}</h4>
+            <p>{{task.description}}</p>
+        </div>
     </div>
 </div>
 
