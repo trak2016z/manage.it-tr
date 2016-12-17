@@ -1,3 +1,7 @@
 <div class="mi-project">
-
+    <button (click)="openNewTaskModal()" class="btn btn-success" type="button" data-toggle="modal" data-target="#mi-new-task-modal" >Dodaj nowe zadanie</button>
+    <hr />
+    <div class="mi-project-column col-xs-4" *ngFor="let column of board?.columns">
+        <h3>{{column.name}}</h3>
+    </div>
 </div>

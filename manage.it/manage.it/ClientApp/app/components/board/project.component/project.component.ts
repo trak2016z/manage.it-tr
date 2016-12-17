@@ -35,6 +35,10 @@ export class ProjectComponent implements OnInit{
             this.utilityService.handleApiError(error);
         });
     }
+
+    openNewTaskModal(): void {
+        //$('#mi-new-task-modal').modal('show');
+    }
 }
 
 

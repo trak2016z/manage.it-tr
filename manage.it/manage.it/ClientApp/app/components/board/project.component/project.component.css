@@ -1,3 +1,8 @@
-
+.mi-project {
+  margin-top: 40px; }
+  .mi-project-column {
+    border-right: 1px solid lightgray; }
+    .mi-project-column:last-child {
+      border: none; }
 
 /*# sourceMappingURL=project.component.css.map */

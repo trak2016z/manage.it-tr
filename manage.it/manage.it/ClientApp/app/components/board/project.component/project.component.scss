@@ -1,3 +1,11 @@
 .mi-project {
+    margin-top: 40px;
 
+    &-column {
+        border-right: 1px solid lightgray;
+
+        &:last-child{
+            border: none;
+        }
+    }
 }
