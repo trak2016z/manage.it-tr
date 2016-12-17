@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using manage.it.Business.Services;
 using manage.it.Data.Models;
+using manage.it.Data.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -49,6 +50,22 @@ namespace manage.it.Controllers
             var project = _boardService.GetProject(projectId);
 
             return Ok(project);
+        }
+
+        [HttpPost("[action]")]
+        [ValidateAntiForgeryToken]
+        public IActionResult CreateNewTask([FromBody]NewTaskViewModel newTask)
+        {
+            var hasUserAccessToProject = _boardService.HasUserAccessToProject(User.Identity.Name, newTask.ProjectId);
+
+            if (!hasUserAccessToProject)
+            {
+                return Unauthorized();
+            }
+
+            var createdTask = _boardService.CreateNewTask(newTask, User.Identity.Name);
+
+            return Ok(createdTask);
         }
     }
 }

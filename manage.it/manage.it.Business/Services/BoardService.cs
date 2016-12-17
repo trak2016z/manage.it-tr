@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using manage.it.Data.Models;
+using manage.it.Data.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using Task = manage.it.Data.Models.Task;
 
 namespace manage.it.Business.Services
 {
@@ -53,6 +55,38 @@ namespace manage.it.Business.Services
                 .Single();
 
             return project;
+        }
+
+        public Task CreateNewTask(NewTaskViewModel newTask, string identityName)
+        {
+            var project = Context.Boards
+                .Where(x => x.Id == newTask.ProjectId)
+                .Include(x => x.Columns)
+                .ThenInclude(x => x.Tasks)
+                .Single();
+
+            var projectFirstColumn = project.Columns.Single(x => x.Sequence == 1);
+            var user = Context.Users.SingleOrDefault(x => x.UserName == identityName);
+            var lastTaskSequence = 0;
+
+            if (projectFirstColumn.Tasks.Any())
+            {
+                lastTaskSequence = projectFirstColumn.Tasks.Max(x => x.Sequence);
+            }
+
+            var task = new Task()
+            {
+                Name = newTask.Name,
+                Description = newTask.Description,
+                UserId = user.Id,
+                ColumnId = projectFirstColumn.Id,
+                Sequence = lastTaskSequence + 1
+            };
+
+            Context.Tasks.Add(task);
+            Context.SaveChanges();
+
+            return task;
         }
 
         #region private methods

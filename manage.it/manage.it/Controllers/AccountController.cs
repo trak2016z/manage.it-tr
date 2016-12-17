@@ -5,7 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using manage.it.Controllers;
 using manage.it.Data.Models;
-using manage.it.ViewModels;
+using manage.it.Data.ViewModels;
 using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Antiforgery.Internal;
 using Microsoft.AspNetCore.Authorization;

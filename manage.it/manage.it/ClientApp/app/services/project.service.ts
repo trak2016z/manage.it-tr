@@ -18,6 +18,14 @@ export class ProjectService {
         });
     }
 
+    createNewTask(name: string, description: string, projectId) : Observable<Response> {
+        return this.httpClient.post('/api/Board/CreateNewTask', {
+            name: name,
+            description: description,
+            projectId: projectId
+        });
+    }
+
     getProjectsForUser(): Observable<Response> {
         return this.httpClient.get('/api/Board/GetProjectsForUser');
     }
