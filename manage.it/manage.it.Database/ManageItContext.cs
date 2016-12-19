@@ -28,7 +28,7 @@ namespace manage.it.Database
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //the same connection string exists in Startup class - G.Niemiec
-            var connection = @"Server=(localdb)\mssqllocaldb;Database=manage.it;Trusted_Connection=True;";
+            var connection = @"Server=tcp:manage-it.database.windows.net,1433;Initial Catalog=manage-it;Persist Security Info=False;User ID=developer;Password=1qaz@WSX;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
             optionsBuilder.UseSqlServer(connection);
         }
 

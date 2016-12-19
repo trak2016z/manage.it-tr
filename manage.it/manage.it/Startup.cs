@@ -35,7 +35,7 @@ namespace manage.it
         public void ConfigureServices(IServiceCollection services)
         {
             //the same connection string exists in ManageItContext class - G.Niemiec
-            var connection = @"Server=(localdb)\mssqllocaldb;Database=manage.it;Trusted_Connection=True;";
+            var connection = @"Server=tcp:manage-it.database.windows.net,1433;Initial Catalog=manage-it;Persist Security Info=False;User ID=developer;Password=1qaz@WSX;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
             // Add framework services.
             services.AddDbContext<ManageItContext>(options =>
