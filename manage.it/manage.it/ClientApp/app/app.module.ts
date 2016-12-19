@@ -14,6 +14,9 @@ import {AccountService} from "./services/account.service";
 import {HttpClient} from "./services/httpClient.service";
 import {UtilityService} from "./services/utility.service";
 import {NewProjectComponent} from "./components/board/new-project.component/new-project.component";
+import {ProjectService} from "./services/project.service";
+import {RowsPipe} from './pipes/rowspipe';
+import {ProjectComponent} from "./components/board/project.component/project.component";
 
 @NgModule({
     bootstrap: [ AppComponent ],
@@ -26,7 +29,9 @@ import {NewProjectComponent} from "./components/board/new-project.component/new-
         RegistrationComponent,
         LoginComponent,
         BoardComponent,
-        NewProjectComponent
+        NewProjectComponent,
+        ProjectComponent,
+        RowsPipe
     ],
     imports: [
         UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
@@ -39,11 +44,12 @@ import {NewProjectComponent} from "./components/board/new-project.component/new-
             { path: 'login', component: LoginComponent },
             { path: 'board', component: BoardComponent },
             { path: 'board/new-project', component: NewProjectComponent },
+            { path: 'board/project/:id', component: ProjectComponent },
             { path: '**', redirectTo: 'home' }
         ]),
         ReactiveFormsModule
     ],
-    providers: [HttpClient, AccountService, UtilityService]
+    providers: [HttpClient, AccountService, UtilityService, ProjectService]
 })
 export class AppModule {
 

@@ -17,4 +17,48 @@ export class ProjectService {
             description: description
         });
     }
+
+    createNewTask(name: string, description: string, projectId) : Observable<Response> {
+        return this.httpClient.post('/api/Board/CreateNewTask', {
+            name: name,
+            description: description,
+            projectId: projectId
+        });
+    }
+
+    getProjectsForUser(): Observable<Response> {
+        return this.httpClient.get('/api/Board/GetProjectsForUser');
+    }
+
+    getProject(projectId: number): Observable<Response> {
+        return this.httpClient.get('/api/Board/GetProject/' + projectId)
+    }
+}
+
+export class Board {
+    id: number;
+    name: string;
+    description: string;
+    columns: Array<Column>;
+    userBoards: any;
+}
+
+export class Column {
+    id: number;
+    name: string;
+    sequence: number;
+    tasks: Array<Task>;
+    boardId: number;
+    board: Board;
+}
+
+export class Task {
+    id: number;
+    name: string;
+    description: string;
+    sequence: number;
+    userId: string;
+    user: any;
+    columnId: number;
+    column: Column;
 }

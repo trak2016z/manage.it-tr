@@ -1,0 +1,40 @@
+<div class="mi-project">
+    <button class="btn btn-success" type="button" data-toggle="modal" data-target="#mi-new-task-modal" >Dodaj nowe zadanie</button>
+    <hr />
+    <div class="mi-project-column col-xs-4" *ngFor="let column of board?.columns">
+        <h3>{{column.name}}</h3>
+        <hr />
+        <div class="mi-project-column-task" *ngFor="let task of column?.tasks">
+            <h4>{{task.name}}</h4>
+            <p>{{task.description}}</p>
+        </div>
+    </div>
+</div>
+
+<!-- NEW TASK MODAL -->
+<div id="mi-new-task-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form [formGroup]="newTaskForm" (ngSubmit)="createNewTask()">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Nowe zadanie</h4>
+                </div>
+                <div class="modal-body">
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Nazwa" formControlName="name">
+                            <span *ngIf="newTaskForm.controls['name'].touched && newTaskForm.controls['name'].hasError('required')" class="text-danger">Nazwa jest wymagana.</span>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Opis" formControlName="description">
+                            <span *ngIf="newTaskForm.controls['description'].touched && newTaskForm.controls['description'].hasError('required')" class="text-danger">Opis jest wymagany.</span>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success pull-right">Dodaj</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

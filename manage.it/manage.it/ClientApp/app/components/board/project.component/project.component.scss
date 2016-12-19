@@ -1,0 +1,23 @@
+.mi-project {
+    margin-top: 40px;
+
+    &-column {
+        border-right: 1px solid lightgray;
+
+        &:last-child{
+            border: none;
+        }
+
+        &-task {
+            border: 1px solid lightgray;
+            padding: 10px;
+            margin-bottom: 10px;
+
+            &:hover {
+                background-color: #4189C7;
+                color: white;
+                cursor: pointer;
+            }
+        }
+    }
+}
